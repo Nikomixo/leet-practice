@@ -10,3 +10,20 @@ def twoSum(nums: list[int], target: int) -> list[int]:
 
 print(twoSum(nums = [2,7,11,15], target = 9))
 print(twoSum(nums = [3,2,4], target = 6))
+
+#use a dictionary (hash table), checking if the complement (target - int) is in the table as we make it
+#time complexity O(n)
+def twoSumHash(nums: list[int], target: int) -> list[int]:
+    nums_dict = {}
+
+    #create dict
+    for i in range(0, len(nums)):
+        #while creating dict, check if complement already exists in dict
+        if target - nums[i] in nums_dict:
+            return [nums_dict[target - nums[i]], i]
+        else:
+            nums_dict[nums[i]] = i
+    return []
+
+print(twoSumHash(nums = [2,7,11,15], target = 9))
+print(twoSumHash(nums = [3,2,4], target = 6))
