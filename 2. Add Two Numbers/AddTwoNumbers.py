@@ -82,4 +82,34 @@ l2 = createLinkedList([4,2,8,9])
 
 printLinkedList(AddTwoNumbers(l1, l2))
 
+#Polished solution, single while loop
+def PolishedAddTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
+    #dummy head
+    head = ListNode()
+    carryover = 0
 
+    tail = head
+    # instead of checking if l1 or l2 still has digits, we run the while loop until both linkedlists and the carryover is exhausted
+    while l1 or l2 or carryover:
+        #if l1 or l2 is exhausted, we just set the digits addends to 0
+        addend1 = l1.val if l1 else 0
+        addend2 = l2.val if l2 else 0
+
+        sum = addend1 + addend2 + carryover
+        digit = sum % 10
+        carryover = sum // 10 #floor division
+
+        tail.next = ListNode(val=digit)
+        tail = tail.next
+
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+
+    return head.next
+
+l1 = createLinkedList([7,2,3])
+l2 = createLinkedList([4,2,8,9])
+
+printLinkedList(PolishedAddTwoNumbers(l1, l2))
+
+        
