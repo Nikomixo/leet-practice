@@ -9,7 +9,7 @@ def lengthOfLongestSubstring(s: str) -> int:
         # else add j to substring
         tempString = tempString[tempString.index(j)+1:] + j if j in tempString else tempString + j
         #check if temp is longer than previous substrings
-        longestString = longestString if longestString > len(tempString) else len(tempString)
+        longestString = max(len(tempString), longestString)
 
     return longestString
 
